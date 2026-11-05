@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prihlásenie — Katedra</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="header">
+    <a class="brand" href="/" aria-label="Katedra, úvod">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M3 3h7v26H3zm11 0h15v7H14zm0 12h11v7H14zm0 12h15v2H14z" fill="currentColor"/></svg>
+      <span>Katedra<small>Študijný portál</small></span>
+    </a>
+    <fieldset class="versions">
+      <legend class="visually-hidden">Verzia aplikácie</legend>
+      <label><input type="radio" name="version" value="vulnerable" checked><span>Nezabezpečená</span></label>
+      <label><input type="radio" name="version" value="secure"><span>Zabezpečená</span></label>
+    </fieldset>
+  </header>
+
+  <main id="main">
+    <section id="login-view" aria-labelledby="login-title">
+      <h1 id="login-title">Prihlásenie</h1>
+      <form id="login-form">
+        <label class="field" for="username">Používateľské meno
+          <input id="username" name="username" type="text" maxlength="200" autocomplete="username" autocapitalize="off" spellcheck="false" required>
+        </label>
+        <label class="field" for="password">Heslo
+          <span class="password-field"><input id="password" name="password" type="password" maxlength="200" autocomplete="current-password"><button id="show-password" type="button" aria-label="Zobraziť heslo" aria-pressed="false">Ukázať</button></span>
+        </label>
+        <p id="login-error" class="error" role="alert" hidden></p>
+        <button id="login-button" class="primary-button" type="submit">Prihlásiť sa <span aria-hidden="true">→</span></button>
+      </form>
+    </section>
+
+    <section id="account-view" aria-labelledby="account-title" hidden>
+      <p class="account-label">Môj účet</p>
+      <h1 id="account-title" tabindex="-1"></h1>
+      <dl class="account-data"><div><dt>Používateľ</dt><dd id="account-username"></dd></div><div><dt>Rola</dt><dd id="account-role"></dd></div><div><dt>E-mail</dt><dd id="account-email"></dd></div><div><dt>Skupina</dt><dd id="account-group"></dd></div></dl>
+      <p id="account-error" class="error" role="alert" hidden></p>
+      <button id="logout-button" class="primary-button" data-logout type="button">Odhlásiť sa <span aria-hidden="true">→</span></button>
+    </section>
+
+    <section id="admin-view" aria-labelledby="admin-title" hidden>
+      <div class="admin-session"><span>Prihlásený: <strong id="admin-username"></strong></span><button class="text-button" data-logout type="button">Odhlásiť sa</button></div>
+      <div class="admin-heading"><h1 id="admin-title" tabindex="-1">Používatelia</h1><button id="reset-users" class="text-button" type="button">Obnoviť pôvodné údaje</button></div>
+      <p id="admin-feedback" class="feedback" role="status" hidden></p>
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Tabuľka používateľov">
+        <table><caption class="visually-hidden">Používatelia študijného portálu</caption><thead><tr><th scope="col">ID</th><th scope="col">Používateľ</th><th scope="col">Meno</th><th scope="col">E-mail</th><th scope="col">Skupina</th><th scope="col">Rola</th><th scope="col"><span class="visually-hidden">Úpravy</span></th></tr></thead><tbody id="users-body"></tbody></table>
+      </div>
+    </section>
+
+    <details id="sql-details" hidden>
+      <summary>SQL dotaz</summary>
+      <pre><code id="sql-query"></code></pre>
+      <p id="sql-parameters" class="parameters" hidden></p>
+      <p id="sql-error" class="sql-error" hidden></p>
+    </details>
+    <noscript>Na prihlásenie je potrebné povoliť JavaScript.</noscript>
+  </main>
+</body>
+</html>
